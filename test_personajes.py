@@ -53,5 +53,6 @@ class TestPersonaje(unittest.TestCase):
         self.humano_juan.Liga("Exmachines")
         self.assertEqual(self.humano_juan.getLiga(), "Exmachines")
 
+
 if __name__ == "__main__":
     unittest.main()
