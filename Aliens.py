@@ -3,12 +3,12 @@ from Ficha import IFicha
 from enumerations import RazaAlienigena
 
 class Aliens(Personaje):
-    __RazaAlienigena: RazaAlienigena
+    __RaceAlien: RazaAlienigena
 
-    def __init__(self,  nombre, vida, estamina, fuerza, velocidad, armadura,mana, estado,RazaAlien, caracterizacion=[], enemigo=None, liga=None):
-        super().__init__(nombre, vida, estamina, fuerza, velocidad, armadura,mana, estado, caracterizacion, enemigo, liga)
-        self.__RazaAlienigena = RazaAlien
+    def __init__(self, caracterizacion=[], enemigo=None, liga=None, **kwargs):
+        super().__init__(caracterizacion, enemigo, liga, **kwargs)
+        self.__RaceAlien = kwargs['RaceAlien']
 
     def getRazaAlien(self):
-        return self.__RazaAlienigena.name
+        return self.__RaceAlien.name
     

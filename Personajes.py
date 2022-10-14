@@ -7,30 +7,31 @@ from Caracterizacion  import Caracterizacion
 from Personalida import Personalidad
 
 class Personaje(IFicha, ABC):
-    __nombre: str
-    __vida: float
-    __estamina: float
+    __name: str
+    __hp: float
+    __stamina: float
     __mana: float
-    __fuerza: float
-    __velocidad: float
-    __armadura: float
-    __liga: str
-    __enemigo: None
+    __strength: float
+    __speed: float
+    __armor: float
+    __ligue: str
+    __enemy: None
     __caracterizacion: List
-    __estado: Estado
+    __status: Estado
 
-    def __init__(self,  nombre, vida, estamina, fuerza, velocidad, armadura,mana, estado, caracterizacion=[], enemigo=None, liga=None):
+    def __init__(self, caracterizacion=[], enemy=None, ligue=None,**kwargs):
         "Inicializador de Persojane, nombre: str, vida: float, estamina: float, fuerza: float, velocidad: float, armadura: float, caracterizacion: list of objects, enemigo: Personaje[defaul->none] liga: str"
-        self.__nombre = nombre
-        self.__vida = vida
-        self.__mana = mana
-        self.__estamina = estamina
-        self.__fuerza = fuerza
-        self.__velocidad = velocidad
-        self.__armadura = armadura
-        self.__enemigo = enemigo
-        self.__liga = liga
-        self.__estado = estado
+        
+        self.__name = kwargs['name']
+        self.__hp = kwargs['hp']
+        self.__mana = kwargs['mana']
+        self.__stamina = kwargs['stamina']
+        self.__strength = kwargs['strength']
+        self.__speed = kwargs['speed']
+        self.__armor = kwargs['armor']
+        self.__enemy = enemy
+        self.__ligue = ligue
+        self.__status = kwargs['status']
         self.__caracterizacion = caracterizacion
 
     
@@ -38,33 +39,33 @@ class Personaje(IFicha, ABC):
         self.__caracterizacion.append(caracterizacion)
     
     def getEnemigo(self):
-        return self.__enemigo
+        return self.__enemy
     def Enemigo(self, personaje):
-        self.__enemigo = personaje
+        self.__enemy = personaje
 
-    def Liga(self, liga):
-        self.__liga = liga
+    def Liga(self, ligue):
+        self.__ligue = ligue
     def getLiga(self):
-        return self.__liga
+        return self.__ligue
 
     def recibirDaño(self, danio):
         """RECIBIR DAÑO """
-        self.__vida -= danio
+        self.__hp -= danio
         
     def setEstado(self):
-        if self.__vida <= 0:
-            self.__vida = 0
-            self.__estado = Estado.MUERTO
+        if self.__hp <= 0:
+            self.__hp = 0
+            self.__status = Estado.MUERTO
         else: 
-            self.__estado = Estado.VIVO
+            self.__status = Estado.VIVO
 
     def getVida(self):
-        return self.__vida
+        return self.__hp
     
         
     def atacar(self, personaje):
         if personaje.__estado.name == "VIVO":
-            personaje.recibirDaño(self.__fuerza)
+            personaje.recibirDaño(self.__strength)
             print("Ataque basico ha sido exitoso")
         else: 
             print("Personaje no esta vivo. . . .")

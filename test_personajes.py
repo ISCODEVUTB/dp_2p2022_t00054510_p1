@@ -17,10 +17,15 @@ from SuperHumanos import SuperHumanos
 class TestPersonaje(unittest.TestCase):
     
     # PERSONAJES PARA TESTEAR
-    humano_juan = Humano("Juan", 100, 100, 50, 120, 100, 100, Estado.VIVO, HumanStatus.COMANDANTE, Sexo.HOMBRE)
-    alien_zeus = Aliens("Zeus", 500, 200, 200, 30, 10, 10, Estado.VIVO, RazaAlienigena.NOXIANOS)
-    Artificial_profi = Artificiales("Profi", 800, 150, 300, 70, 200, RangoArticial.CYBER_MECH, Laboratorio.DEXTER_LABORATORIO)
-    super_humano_maria = SuperHumanos("Maria", 500, 500, 500,500,500, 100, Estado.VIVO,ShClass.SUPERFUERTE)
+    dict_humano = {'name':"Juan", 'hp':100,'stamina':100,'strength': 50,'speed': 120,'armor':100,'mana': 100,'status': Estado.VIVO, 'humanStatus':HumanStatus.COMANDANTE,'sex': Sexo.HOMBRE}
+    dict_alien = {'name':"Zeus",'hp': 500,'stamina': 200,'strength': 200,'speed': 30,'armor':10,'mana': 10,'status': Estado.VIVO,'RaceAlien': RazaAlienigena.NOXIANOS}
+    dict_artif = {'name':'Profi', 'hp': 500,'stamina': 200,'strength': 200,'speed': 30,'armor':200, 'mana':0, 'status': Estado.VIVO, 'RangeArtificial': RangoArticial.CYBER_MECH, 'Laboratory': Laboratorio.DEXTER_LABORATORIO}
+    dict_superh = {'name' :"Maria",'hp': 500,'stamina': 500,'strength': 500,'speed': 500,'armor': 500,'mana': 100,'status': Estado.VIVO,'shclass': ShClass.SUPERFUERTE}
+    alien_zeus = Aliens(**dict_alien)
+    humano_juan = Humano(**dict_humano)
+    Artificial_profi = Artificiales(**dict_artif)
+    super_humano_maria = SuperHumanos(**dict_superh)
+    
 
 
     # Caracterizacion para Testear
